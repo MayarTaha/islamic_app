@@ -2,28 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'sura_model.dart';
-
-class SuraDetails extends StatefulWidget {
-  static const String routeName = 'suradetails';
-
-  SuraDetails({Key? key}) : super(key: key);
-
+class HadethDetails extends StatefulWidget {
+   HadethDetails({Key? key}) : super(key: key);
+ static const String routeName='HadethDetails';
   @override
-  State<SuraDetails> createState() => _SuraDetailsState();
+  State<HadethDetails> createState() => _HadethDetailsState();
 }
 
-class _SuraDetailsState extends State<SuraDetails> {
+class _HadethDetailsState extends State<HadethDetails> {
   List<String> verses = [];
-
   @override
   Widget build(BuildContext context) {
-    var suraModel = ModalRoute.of(context)!.settings.arguments as SuraModel;
+    int indx=ModalRoute.of(context)!.settings.arguments as int ;
     if (verses.isEmpty) {
-      loadfile(suraModel.index + 1);
+      loadfile(indx);
     }
 
-    return Container(
+      return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
@@ -35,7 +30,7 @@ class _SuraDetailsState extends State<SuraDetails> {
         appBar: AppBar(
           iconTheme: IconThemeData(size: 40),
           title: Text(
-          'إسلامي',
+            'إسلامي',
             style: GoogleFonts.elMessiri(
                 color: Color(0xff242424),
                 fontSize: 30,
@@ -52,14 +47,7 @@ class _SuraDetailsState extends State<SuraDetails> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                   ' سورة ${suraModel.name}',
-                    style: GoogleFonts.elMessiri(
-                        color: Color(0xff242424),
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    '_${suraModel.index+1}',
+                    ' الحديث رقم ${indx + 1}',
                     style: GoogleFonts.elMessiri(
                         color: Color(0xff242424),
                         fontSize: 30,
@@ -76,20 +64,20 @@ class _SuraDetailsState extends State<SuraDetails> {
               Expanded(
                 child: Card(
                   color: Colors.white60.withOpacity(.7),
-                 shape: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(12),
-                   borderSide: BorderSide(color: Colors.transparent)
-                 ),
+                  shape: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.transparent)
+                  ),
                   child: ListView.builder(
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child:
-                        Text('(${index + 1}) ${verses[index]}',style:GoogleFonts.elMessiri(
+                        Text('$verses',style:GoogleFonts.elMessiri(
                             color: Color(0xff242424),
                             fontSize: 30,
                             fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.center,),
+                          textAlign: TextAlign.center,),
                       );
                     },
                     itemCount: verses.length,
@@ -104,10 +92,12 @@ class _SuraDetailsState extends State<SuraDetails> {
   }
 
   Future<void> loadfile(int index) async {
-    String sura = await rootBundle.loadString('assets/files/$index.txt');
-    List<String> lines = sura.trim().split('\n');
+    String hadeth = await rootBundle.loadString('assets/files/hadeth/h${index+1}.txt');
+    List<String> lines = hadeth.split('\n');
+    lines.removeAt(0);
     verses = lines;
-    print(sura);
-    setState(() {});
+    print(hadeth);
+    setState(() {
+    });
   }
 }
