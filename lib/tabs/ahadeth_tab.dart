@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../hadeth_details.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class AhadethTab extends StatelessWidget {
    AhadethTab({Key? key}) : super(key: key);
 int idex=0;
@@ -16,7 +16,7 @@ int idex=0;
             color: Color(0xffB7935F),
           ),
           Text(
-            'الأحاديث',
+            AppLocalizations.of(context)!.ahadeth,
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
           ),
           Divider(

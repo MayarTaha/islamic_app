@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'sura_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class SuraDetails extends StatefulWidget {
   static const String routeName = 'suradetails';
 

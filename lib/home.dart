@@ -5,7 +5,7 @@ import 'package:islamic_app/tabs/quran_tab.dart';
 import 'package:islamic_app/tabs/radio_tab.dart';
 import 'package:islamic_app/tabs/sebha_tab.dart';
 import 'package:islamic_app/tabs/setting_tab.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class Home extends StatefulWidget {
   static const String routeName = 'HomeScreen';
 
@@ -29,7 +29,7 @@ int index=0;
        backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            'إسلامي',
+            AppLocalizations.of(context)!.app_name,
             style: GoogleFonts.elMessiri(
                 color: Color(0xff242424),
                 fontSize: 30,
